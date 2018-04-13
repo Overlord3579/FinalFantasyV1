@@ -18,14 +18,9 @@ import javax.swing.JFileChooser;
 
 public class FinalFantasyV1 extends JFrame implements KeyListener
 {
-   private Timer enemyTimer;        // propels top enemy horizontally across screen
    private Timer playerTimer;       // propels bottom player horizontally across screen
    private Timer timerBullet;       // propels bottom player's bullet vertically up the screen
    private int playerX;             // the x location of player
-   private int enemyX;              // the x location of enemy
-   private int bulletY;             // the y location of player's bullet
-   private int bulletX;             // the x location of player's bullet
-   private int enemyMoveAmount;     // the enemy's horizontal move amount in each timer step
    private int playerMoveAmount;    // the player's horizontal move amount in each timer step
    private int bulletMoveAmount;    // the bullet's vertical move amount in each timer step
    private int playerScore;         // player score
@@ -34,9 +29,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    public FinalFantasyV1()             // default constructor
    {
       playerX = 200;                // initial horizontal position of player                
-      enemyX = 60;                  // initial horizontal position of enemy
-     
-      enemyMoveAmount = 10;  
+        
       playerMoveAmount = 10;
       bulletMoveAmount = 10;    
      
@@ -45,28 +38,6 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       
       addKeyListener(this);         // necessary to make the KeyListener work correctly
      
-      // enemy moving back and forth horizontally
-      enemyTimer = new Timer(200, new ActionListener()
-      {
-
-         public void actionPerformed(ActionEvent evt)
-         {
-
-            if (enemyX <= 0)                 // left boundary  detection for enemy
-            {
-               enemyMoveAmount = 10;
-            }
-            else if (enemyX >= SCREEN_WIDTH) // right boundary detection for enemy
-            {
-               enemyMoveAmount = -10;
-            }
-             
-            enemyX += enemyMoveAmount;       // moving enemy horizontally across screen
-            repaint();
-         }
-
-      });  
-      
       // player moving back and forth horizontally
       playerTimer = new Timer(200, new ActionListener()
       {
