@@ -8,8 +8,8 @@ public class Hero
 {
    public Hero()
    {
-      myWidth = 20;
-      myHeight = 20;
+      myWidth = 50;
+      myHeight = 50;
       myHealth = 1000;
       myAttack = 76; //- enemyDefense;
       myDefense = 100;
