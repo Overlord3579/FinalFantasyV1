@@ -16,15 +16,21 @@ import java.io.*;
 import java.net.*;
 import javax.swing.JFileChooser;
 
+
 public class FinalFantasyV1 extends JFrame 
 {
    private int heroX;             // the x location of player
    private int playerMoveAmount;    // the player's horizontal move amount in each timer step
    private int playerScore;         // player score
    private final static int SCREEN_WIDTH = 1000;   // width of screen
+   Scanner keyboard = new Scanner(System.in); 
+
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
    Image forest = Toolkit.getDefaultToolkit().createImage("Forest.jpg");
+   Image hydra = Toolkit.getDefaultToolkit().createImage("Hydra.jpg");
+   Image dragon = Toolkit.getDefaultToolkit().createImage("Dragon.jpg");
+   Image electroWolf = Toolkit.getDefaultToolkit().createImage("ElectroWolf.jpg");
      
    public FinalFantasyV1()             // default constructor
    {
@@ -38,14 +44,13 @@ public class FinalFantasyV1 extends JFrame
           
       g.drawImage(forest, 0, 0, 1000, 1000, this);
       g.drawImage(hero, 0, 25, 50, 50, this);
+      g.drawImage(hydra, 750, 750, 150, 150, this);
+      g.drawImage(dragon, 750, 250, 150, 150, this);
+      g.drawImage(electroWolf, 250, 750, 150, 150, this);
       
           
       g.setColor(Color.cyan);                              // update status
-      g.drawString("score: " + playerScore, 30, 250);
-      g.drawString("Use WASD to move", 450, 950);
-   
-    
-    
+      g.drawString("Use WASD to move", 450, 950);  
    }
    
    public static void main(String[] args)
