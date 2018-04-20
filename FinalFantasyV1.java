@@ -15,15 +15,15 @@ import java.util.Properties;
 import java.io.*;
 import java.net.*;
 import javax.swing.JFileChooser;
+import java.util.Scanner;
 
 
 public class FinalFantasyV1 extends JFrame 
 {
    private int heroX;             // the x location of player
-   private int playerMoveAmount;    // the player's horizontal move amount in each timer step
-   private int playerScore;         // player score
+   private int heroY;             // the y location of player
    private final static int SCREEN_WIDTH = 1000;   // width of screen
-   Scanner keyboard = new Scanner(System.in); 
+    
 
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
@@ -32,11 +32,7 @@ public class FinalFantasyV1 extends JFrame
    Image dragon = Toolkit.getDefaultToolkit().createImage("Dragon.jpg");
    Image electroWolf = Toolkit.getDefaultToolkit().createImage("ElectroWolf.jpg");
      
-   public FinalFantasyV1()             // default constructor
-   {
-      heroX = 0;                // initial horizontal position of player  
-     
-   }
+
    
    public void paint(Graphics g)
    {
@@ -53,13 +49,69 @@ public class FinalFantasyV1 extends JFrame
       g.drawString("Use WASD to move", 450, 950);  
    }
    
+    public void keyTyped(KeyEvent key)
+   {
+      public void paint(Graphics g)
+      {
+      
+         if (key.getKeyChar() == 'W' )
+         {
+            g.drawImage(hero, heroX, heroY + 25, 50, 50, this);
+         }
+         else if(key.getKeyChar() == 'A' )
+         {
+            g.drawImage(hero, heroX - 25, heroY, 50, 50, this);
+         }
+         else if(key.getKeyChar() == 'S' )
+         {  
+            g.drawImage(hero, heroX, heroY - 25, 50, 50, this);
+         }
+         else if(key.getKeyChar() == 'D' )
+         {
+            g.drawImage(hero, heroX + 25, heroY, 50, 50, this);
+         }
+      }
+   }
+   
    public static void main(String[] args)
    {
       FinalFantasyV1 prog = new FinalFantasyV1();
       prog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       prog.setSize(SCREEN_WIDTH, SCREEN_WIDTH);
       prog.setVisible(true);
+      
+      
+      /*Scanner keyboard = new Scanner(System.in);
+      
+      int heroX = 0;
+      int heroY = 25;
+      String Wasd = "";
+      System.out.println("Type W to move up, type A to move left, type S to move down, and type D to move right.");
+      Wasd = keyboard.next();
+      
+      if(Wasd = "W")
+      {
+         g.drawImage(hero, heroX, heroY + 25, 50, 50, this);
+      }
+      else if(Wasd = "A")
+      {
+         g.drawImage(hero, heroX - 25, heroY, 50, 50, this);
+      }
+      else if(Wasd = "S")
+      {
+         g.drawImage(hero, heroX, heroY - 25, 50, 50, this);
+      }
+      else if(Wasd = "D")
+      {
+         g.drawImage(hero, heroX + 25, heroY, 50, 50, this);
+      }
+      */
+      
+      
+      
    }// end of main method
+   
+   
 
 }// end of class
 
