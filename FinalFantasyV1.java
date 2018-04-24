@@ -15,13 +15,12 @@ import java.util.Properties;
 import java.io.*;
 import java.net.*;
 import javax.swing.JFileChooser;
-import java.util.Scanner;
 
 
-public class FinalFantasyV1 extends JFrame 
+public class FinalFantasyV1 extends JFrame implements KeyListener
 {
-   private int heroX;             // the x location of player
-   private int heroY;             // the y location of player
+   public int heroX = 50;             // the x location of player
+   public int heroY = 50;             // the y location of player
    private final static int SCREEN_WIDTH = 1000;   // width of screen
     
 
@@ -39,7 +38,7 @@ public class FinalFantasyV1 extends JFrame
       requestFocus();
           
       g.drawImage(forest, 0, 0, 1000, 1000, this);
-      g.drawImage(hero, 0, 25, 50, 50, this);
+      g.drawImage(hero, 0, heroX, heroY, 50, this);
       g.drawImage(hydra, 750, 750, 150, 150, this);
       g.drawImage(dragon, 750, 250, 150, 150, this);
       g.drawImage(electroWolf, 250, 750, 150, 150, this);
@@ -51,63 +50,41 @@ public class FinalFantasyV1 extends JFrame
    
     public void keyTyped(KeyEvent key)
    {
-      public void paint(Graphics g)
-      {
+   
+      addKeyListener(this);
       
-         if (key.getKeyChar() == 'W' )
+         if (key.getKeyChar() == 'w' )
          {
-            g.drawImage(hero, heroX, heroY + 25, 50, 50, this);
+           heroY += 25;
+           repaint();
          }
-         else if(key.getKeyChar() == 'A' )
+         else if(key.getKeyChar() == 'a' )
          {
-            g.drawImage(hero, heroX - 25, heroY, 50, 50, this);
+            heroX -= 25;
+            repaint();
          }
-         else if(key.getKeyChar() == 'S' )
+         else if(key.getKeyChar() == 's' )
          {  
-            g.drawImage(hero, heroX, heroY - 25, 50, 50, this);
+            heroY -= 25;
+            repaint();
          }
-         else if(key.getKeyChar() == 'D' )
+         else if(key.getKeyChar() == 'd' )
          {
-            g.drawImage(hero, heroX + 25, heroY, 50, 50, this);
+            heroX += 25;
+            System.out.println("WORK PLEASE");
+            repaint();
          }
       }
-   }
+      
+      public void keyPressed(KeyEvent e) { }
+      public void keyReleased(KeyEvent e) { }
    
    public static void main(String[] args)
    {
       FinalFantasyV1 prog = new FinalFantasyV1();
       prog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       prog.setSize(SCREEN_WIDTH, SCREEN_WIDTH);
-      prog.setVisible(true);
-      
-      
-      /*Scanner keyboard = new Scanner(System.in);
-      
-      int heroX = 0;
-      int heroY = 25;
-      String Wasd = "";
-      System.out.println("Type W to move up, type A to move left, type S to move down, and type D to move right.");
-      Wasd = keyboard.next();
-      
-      if(Wasd = "W")
-      {
-         g.drawImage(hero, heroX, heroY + 25, 50, 50, this);
-      }
-      else if(Wasd = "A")
-      {
-         g.drawImage(hero, heroX - 25, heroY, 50, 50, this);
-      }
-      else if(Wasd = "S")
-      {
-         g.drawImage(hero, heroX, heroY - 25, 50, 50, this);
-      }
-      else if(Wasd = "D")
-      {
-         g.drawImage(hero, heroX + 25, heroY, 50, 50, this);
-      }
-      */
-      
-      
+      prog.setVisible(true);    
       
    }// end of main method
    
