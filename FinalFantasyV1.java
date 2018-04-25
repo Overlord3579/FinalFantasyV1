@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.image.*;
 import java.util.Properties;
+import javax.swing.JApplet;
 import java.io.*;
 import java.net.*;
 import javax.swing.JFileChooser;
@@ -22,7 +23,6 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    public int heroX = 50;             // the x location of player
    public int heroY = 50;             // the y location of player
    private final static int SCREEN_WIDTH = 1000;   // width of screen
-    
 
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
@@ -38,7 +38,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       requestFocus();
           
       g.drawImage(forest, 0, 0, 1000, 1000, this);
-      g.drawImage(hero, 0, heroX, heroY, 50, this);
+      g.drawImage(hero, heroX, heroY, 50, 50, this);
       g.drawImage(hydra, 750, 750, 150, 150, this);
       g.drawImage(dragon, 750, 250, 150, 150, this);
       g.drawImage(electroWolf, 250, 750, 150, 150, this);
@@ -51,7 +51,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
     public void keyTyped(KeyEvent key)
    {
    
-      addKeyListener(this);
+            addKeyListener(this);
       
          if (key.getKeyChar() == 'w' )
          {
@@ -76,15 +76,18 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
          }
       }
       
-      public void keyPressed(KeyEvent e) { }
-      public void keyReleased(KeyEvent e) { }
+      public void keyPressed(KeyEvent key) { }
+      public void keyReleased(KeyEvent key) { }
+     
    
    public static void main(String[] args)
    {
       FinalFantasyV1 prog = new FinalFantasyV1();
       prog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       prog.setSize(SCREEN_WIDTH, SCREEN_WIDTH);
-      prog.setVisible(true);    
+      prog.setVisible(true);
+      prog.setFocusable(true);
+      prog.setLayout(new FlowLayout());
       
    }// end of main method
    
