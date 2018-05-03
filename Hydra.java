@@ -31,11 +31,12 @@ public class Hydra
    }
    public int calculateHealth()
    {
-      return myHealth; // - (enemyAttack - myDefense);
+      return myHealth - (Hero.myAttack - myDefense); 
+      System.out.println("You did _____ damage! The Hydra has" + myHealth + "left!");
    }   
-   private int myWidth;
-   private int myHeight;
-   private int myHealth;
-   private int myAttack;
-   private int myDefense;
+   public int myWidth;
+   public int myHeight;
+   public int myHealth;
+   public int myAttack;
+   public int myDefense;
 }

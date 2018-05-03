@@ -25,6 +25,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    public int heroX = 50;             // the x location of player
    public int heroY = 50;             // the y location of player
    private final static int SCREEN_WIDTH = 1000;   // width of screen
+   private Timer battleTimer;
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
    Image forest = Toolkit.getDefaultToolkit().createImage("Forest.jpg");
@@ -37,7 +38,8 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    {
       addKeyListener(this);
       
-
+      battleTimer = new Timer(1000, new KeyListener()
+      
    }
    
    public void paint(Graphics g)
@@ -90,14 +92,17 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
                repaint2(hero);
             }
             
-            if ('j' == e.getKeyChar() && heroX != 200 && heroY != 900)
+            if ('j' == e.getKeyChar() && heroX != 200 && heroY != 850 && heroX != 700 && heroY != 350 && heroX != 700 && heroY != 850)
             {
                System.out.println("Nice job idiot you chopped down a tree");
             }
             
+            
+            
             if (heroX == 200 && heroY == 850)
             {
                System.out.println("An ElectroWolf has appeared and wants to fight!");
+               
             }
             
             if(heroX == 700 && heroY == 350)

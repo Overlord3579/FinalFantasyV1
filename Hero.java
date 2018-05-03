@@ -53,11 +53,11 @@ public class Hero
       return myHealth; // - (enemyAttack - myDefense);
    }   
       
-   private int myWidth;
-   private int myHeight;
-   private int myHealth;
-   private int myAttack;
-   private int myDefense;
+   public int myWidth;
+   public int myHeight;
+   public int myHealth;
+   public int myAttack;
+   public int myDefense;
    public int myY;
    public int myX;
 }
