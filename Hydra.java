@@ -7,11 +7,10 @@ public class Hydra
 {
    public Hydra()
    {
-      myWidth = 50;
-      myHeight = 50;
+      myWidth = 150;
+      myHeight = 150;
       myHealth = 1000;
       myAttack = 76; //- enemyDefense;
-      myDefense = 100;
    }
       public Hydra(int width, int height, int health, int attack, int defense)
    {
@@ -19,7 +18,6 @@ public class Hydra
       myHeight = height;
       myHealth = health;
       myAttack = attack;
-      myDefense = defense;
    }
    public int getHealth()
    {
@@ -38,5 +36,4 @@ public class Hydra
    public int myHeight;
    public int myHealth;
    public int myAttack;
-   public int myDefense;
 }

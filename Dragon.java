@@ -11,7 +11,6 @@ public class Dragon
       myHeight = 50;
       myHealth = 1000;
       myAttack = 76; //- enemyDefense;
-      myDefense = 100;
    }
       public Dragon(int width, int height, int health, int attack, int defense)
    {
@@ -19,7 +18,6 @@ public class Dragon
       myHeight = height;
       myHealth = health;
       myAttack = attack;
-      myDefense = defense;
    }
    public int getHealth()
    {
@@ -37,5 +35,4 @@ public class Dragon
    public int myHeight;
    public int myHealth;
    public int myAttack;
-   public int myDefense;
 }

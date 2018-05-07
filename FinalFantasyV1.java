@@ -26,6 +26,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    public int heroY = 50;             // the y location of player
    private final static int SCREEN_WIDTH = 1000;   // width of screen
    private Timer battleTimer;
+   public int monster;
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
    Image forest = Toolkit.getDefaultToolkit().createImage("Forest.jpg");
@@ -38,8 +39,14 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    {
       addKeyListener(this);
       
-      battleTimer = new Timer(1000, new KeyListener()
+      battleTimer = new Timer(1000, new ActionListener()
+      {
       
+         public void actionPerformed(ActionEvent evt)
+         {
+         }
+      
+      });
    }
    
    public void paint(Graphics g)
@@ -55,7 +62,8 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       
           
       g.setColor(Color.cyan);                              // update status
-      g.drawString("Use WASD to move and only tap", 450, 950);  
+      g.drawString("Use WASD to move and only tap", 450, 950); 
+      g.drawString("Monsters killed: " + monster + "/3" , 450, 50); 
    }
    
    public void repaint2(Image hero)
@@ -67,6 +75,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
   
     public void keyPressed(KeyEvent e) 
     { 
+            monster = 0;
             
             if ('w' == e.getKeyChar())
             {
@@ -102,12 +111,20 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
             if (heroX == 200 && heroY == 850)
             {
                System.out.println("An ElectroWolf has appeared and wants to fight!");
+               battleTimer.start();
+               }
                
+            if(ElectroWolf.electroWolfHealth <= 0)
+            {
+               battleTimer.stop();
+               monster++;
+               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
             }
             
             if(heroX == 700 && heroY == 350)
             {
                System.out.println("A dragon has appeared and wants to fight!");
+               
             }
             
             if(heroX == 700 && heroY == 850)

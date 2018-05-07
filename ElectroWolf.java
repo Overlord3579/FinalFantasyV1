@@ -7,35 +7,32 @@ public class ElectroWolf
 {
    public ElectroWolf()
    {
-      myWidth = 50;
-      myHeight = 50;
-      myHealth = 1000;
-      myAttack = 76; //- enemyDefense;
-      myDefense = 100;
+      electroWolfWidth = 50;
+      electroWolfHeight = 50;
+      electroWolfHealth = 1000;
+      electroWolfAttack = 76; //- enemyDefense;
    }
       public ElectroWolf(int width, int height, int health, int attack, int defense)
    {
-      myWidth = width;
-      myHeight = height;
-      myHealth = health;
-      myAttack = attack;
-      myDefense = defense;
+      electroWolfWidth = width;
+      electroWolfHeight = height;
+      electroWolfHealth = health;
+      electroWolfAttack = attack;
    }
    public int getHealth()
    {
-      return myHealth;
+      return electroWolfHealth;
    }
    public void setHealth(int health)
    { 
-      myHealth = health;
+      electroWolfHealth = health;
    }
    public int calculateHealth()
    {
-      return myHealth; // - (enemyAttack - myDefense);
+      return electroWolfHealth; // - (enemyAttack - myDefense);
    }   
-   public int myWidth;
-   public int myHeight;
-   public int myHealth;
-   public int myAttack;
-   public int myDefense;
+   public int electroWolfWidth;
+   public int electroWolfHeight;
+   public int electroWolfHealth;
+   public int electroWolfAttack;
 }
