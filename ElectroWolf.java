@@ -9,8 +9,8 @@ public class ElectroWolf
    {
       electroWolfWidth = 50;
       electroWolfHeight = 50;
-      electroWolfHealth = 1000;
-      electroWolfAttack = 76; //- enemyDefense;
+      electroWolfHealth = 2000;
+      electroWolfAttack = 50; //- enemyDefense;
    }
       public ElectroWolf(int width, int height, int health, int attack, int defense)
    {

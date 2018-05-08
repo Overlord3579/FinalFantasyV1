@@ -10,9 +10,9 @@ public class Hero
    {
       myWidth = 50;
       myHeight = 50;
-      myHealth = 1000;
-      myAttack = 76; //- enemyDefense;
-      myDefense = 100;
+      myHealth = 2000;
+      myAttack = 25; //- enemyDefense;
+      myDefense = 25;
       myX = 50;
       myY = 50;
    }

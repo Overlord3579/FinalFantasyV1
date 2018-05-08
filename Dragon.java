@@ -9,8 +9,8 @@ public class Dragon
    {
       myWidth = 50;
       myHeight = 50;
-      myHealth = 1000;
-      myAttack = 76; //- enemyDefense;
+      myHealth = 4000;
+      myAttack = 100; //- enemyDefense;
    }
       public Dragon(int width, int height, int health, int attack, int defense)
    {

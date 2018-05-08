@@ -27,6 +27,15 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    private final static int SCREEN_WIDTH = 1000;   // width of screen
    private Timer battleTimer;
    public int monster;
+   public int wolfHealth;
+   public int hydraHealth;
+   public int dragonHealth;
+   public int heroHealth;
+   public int heroAttack;
+   public int dragonAttack;
+   public int hydraAttack;
+   public int wolfAttack;
+   public int heroDefense;
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
    Image forest = Toolkit.getDefaultToolkit().createImage("Forest.jpg");
@@ -37,13 +46,55 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    
    public FinalFantasyV1()
    {
+      wolfAttack = 50;
+      hydraAttack = 75;
+      dragonAttack = 100;
+      heroAttack = 25;
+      dragonHealth = 4000;
+      hydraHealth = 3000;
+      wolfHealth = 2000;
+      heroHealth = 2000;
+      heroDefense = 25;
+      
       addKeyListener(this);
       
-      battleTimer = new Timer(1000, new ActionListener()
+      battleTimer = new Timer(10000, new ActionListener()
       {
       
          public void actionPerformed(ActionEvent evt)
          {
+            if(battleTimer.start() && heroX == 200 && heroY == 850)
+            {
+               System.out.println("Press the space bar to attack hero!");
+            }
+         
+            if(wolfHealth <= 0)
+               {
+                  battleTimer.stop();
+                  monster++;
+                  System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+                  repaint();
+               }
+          
+            if(hydraHealth <= 0)
+               {
+                  battleTimer.stop();
+                  monster++;
+                  System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+                  repaint();
+               }
+          
+            if(dragonHealth <= 0)
+               {
+                  battleTimer.stop();
+                  monster++;
+                  System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+                  repaint();
+               }
+            if(monster == 3)
+               {
+                  System.out.println("Congratulations you have defeated all the monsters that have terrorized the lands for ages and now the world is safe! THE END!");
+               }
          }
       
       });
@@ -106,30 +157,22 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
                System.out.println("Nice job idiot you chopped down a tree");
             }
             
-            
-            
             if (heroX == 200 && heroY == 850)
             {
                System.out.println("An ElectroWolf has appeared and wants to fight!");
                battleTimer.start();
-               }
-               
-            if(ElectroWolf.electroWolfHealth <= 0)
-            {
-               battleTimer.stop();
-               monster++;
-               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
             }
             
             if(heroX == 700 && heroY == 350)
             {
                System.out.println("A dragon has appeared and wants to fight!");
-               
+               battleTimer.start();
             }
             
             if(heroX == 700 && heroY == 850)
             {
                System.out.println("A seven headed hydra has appeared and wants to fight!");
+               battleTimer.start();
             }
       
             if(heroX >= 1000 || heroX <= 0 || heroY <= 0 || heroY >= 1000)

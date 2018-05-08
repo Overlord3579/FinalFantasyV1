@@ -9,8 +9,8 @@ public class Hydra
    {
       myWidth = 150;
       myHeight = 150;
-      myHealth = 1000;
-      myAttack = 76; //- enemyDefense;
+      myHealth = 3000;
+      myAttack = 75; //- enemyDefense;
    }
       public Hydra(int width, int height, int health, int attack, int defense)
    {
