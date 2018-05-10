@@ -22,10 +22,10 @@ import java.awt.Graphics;
 
 public class FinalFantasyV1 extends JFrame implements KeyListener
 {
-   public int heroX = 50;             // the x location of player
-   public int heroY = 50;             // the y location of player
+   public int heroX = 50;             // the starting x location of player
+   public int heroY = 50;             // the starting y location of player
    private final static int SCREEN_WIDTH = 1000;   // width of screen
-   private Timer battleTimer;
+   public Timer battleTimer;
    public int monster;
    public int wolfHealth;
    public int hydraHealth;
@@ -58,43 +58,50 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       
       addKeyListener(this);
       
-      battleTimer = new Timer(10000, new ActionListener()
+      battleTimer = new Timer(10, new ActionListener()
       {
       
          public void actionPerformed(ActionEvent evt)
          {
-            if(battleTimer.start() && heroX == 200 && heroY == 850)
+            if(battleTimer.isRunning() && heroX == 200 && heroY == 850)
             {
-               System.out.println("Press the space bar to attack hero!");
+               System.out.println("Press the space bar to attack!");
+               battleTimer.stop();
             }
          
             if(wolfHealth <= 0)
-               {
-                  battleTimer.stop();
-                  monster++;
-                  System.out.println("Good job you've defeated" + monster + "/3 monsters!");
-                  repaint();
-               }
+            {
+               monster++;
+               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+               repaint();
+            }
           
             if(hydraHealth <= 0)
-               {
-                  battleTimer.stop();
-                  monster++;
-                  System.out.println("Good job you've defeated" + monster + "/3 monsters!");
-                  repaint();
-               }
+            {
+               battleTimer.stop();
+               monster++;
+               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+               repaint();
+            }
           
             if(dragonHealth <= 0)
-               {
-                  battleTimer.stop();
-                  monster++;
-                  System.out.println("Good job you've defeated" + monster + "/3 monsters!");
-                  repaint();
-               }
+            {
+               battleTimer.stop();
+               monster++;
+               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+               repaint();
+            }
             if(monster == 3)
-               {
-                  System.out.println("Congratulations you have defeated all the monsters that have terrorized the lands for ages and now the world is safe! THE END!");
-               }
+            {
+               System.out.println("Congratulations you have defeated all the monsters that have terrorized the lands for ages and now the world is safe! THE END!");
+            }
+            
+            if(heroHealth <= 0)
+            {
+               System.out.println("Your hero has died and the world is now doomed but your valiant effort will not be forgotten!");
+               System.out.println("GAME OVER TRY AGAIN!");
+               System.exit(0);
+            }
          }
       
       });
@@ -126,62 +133,63 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
   
     public void keyPressed(KeyEvent e) 
     { 
-            monster = 0;
+      monster = 0;
             
-            if ('w' == e.getKeyChar())
-            {
-              heroY -= 50;
-              repaint2(hero);
-            }
+      if ('w' == e.getKeyChar())
+      {
+         heroY -= 50;
+         repaint2(hero);
+      }
             
-            if('a' == e.getKeyChar())
-            {
-               heroX -= 50;
-               repaint2(hero);
-            }
+      if('a' == e.getKeyChar())
+      {
+         heroX -= 50;
+         repaint2(hero);
+      }
             
-            if('s' == e.getKeyChar())
-            {  
-               heroY += 50;
-               repaint2(hero);
-            }
+      if('s' == e.getKeyChar())
+      {  
+         heroY += 50;
+         repaint2(hero);
+      }
             
-            if('d' == e.getKeyChar())
-            {
-               heroX += 50;
-               repaint2(hero);
-            }
+      if('d' == e.getKeyChar())
+      {
+         heroX += 50;
+         repaint2(hero);
+      }
             
-            if ('j' == e.getKeyChar() && heroX != 200 && heroY != 850 && heroX != 700 && heroY != 350 && heroX != 700 && heroY != 850)
-            {
-               System.out.println("Nice job idiot you chopped down a tree");
-            }
+      if (' ' == e.getKeyChar() && heroX == 200 && heroY == 850)
+      {
+         wolfHealth =  wolfHealth - (heroAttack * (int) (Math.random() * 6) + 1);
+         System.out.println("Nice hit the wolf only has " + wolfHealth + " health left!");
+      }
             
-            if (heroX == 200 && heroY == 850)
-            {
-               System.out.println("An ElectroWolf has appeared and wants to fight!");
-               battleTimer.start();
-            }
+      if (heroX == 200 && heroY == 850)
+      {
+         System.out.println("An ElectroWolf has appeared and wants to fight!");
+         battleTimer.start();
+      }
             
-            if(heroX == 700 && heroY == 350)
-            {
-               System.out.println("A dragon has appeared and wants to fight!");
-               battleTimer.start();
-            }
+      if(heroX == 700 && heroY == 350)
+      {
+         System.out.println("A dragon has appeared and wants to fight!");
+         battleTimer.start();
+      }
             
-            if(heroX == 700 && heroY == 850)
-            {
-               System.out.println("A seven headed hydra has appeared and wants to fight!");
-               battleTimer.start();
-            }
+      if(heroX == 700 && heroY == 850)
+      {
+         System.out.println("A seven headed hydra has appeared and wants to fight!");
+         battleTimer.start();
+      }
       
-            if(heroX >= 1000 || heroX <= 0 || heroY <= 0 || heroY >= 1000)
-            {
-               System.out.println("Nice job idiot you went out of the forest and now the world is doomed!!");
-               System.out.println("Now everyone including you is dead!");
-               System.out.println("GAME OVER TRY AGAIN!");
-               System.exit(0);
-            }
+      if(heroX > 1000 || heroX < 0 || heroY < 0 || heroY > 1000)
+      {
+         System.out.println("Nice job idiot you went out of the forest and now the world is doomed!!");
+         System.out.println("Now everyone including you is dead!");
+         System.out.println("GAME OVER TRY AGAIN!");
+         System.exit(0);
+      }
       
       }
       public void keyReleased(KeyEvent e) 
