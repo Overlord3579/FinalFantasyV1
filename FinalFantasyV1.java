@@ -58,39 +58,59 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       
       addKeyListener(this);
       
-      battleTimer = new Timer(10, new ActionListener()
+      battleTimer = new Timer(1000, new ActionListener()
       {
       
          public void actionPerformed(ActionEvent evt)
          {
-            if(battleTimer.isRunning() && heroX == 200 && heroY == 850)
+            if(battleTimer.isRunning() && heroX == 200 && heroY == 850) //ElectroWolf battle sequence
             {
                System.out.println("Press the space bar to attack!");
-               battleTimer.stop();
             }
-         
+            
+            if(battleTimer.isRunning() && heroX == 700 && heroY == 350) //dragon battle sequence
+            {
+               System.out.println("Press the space bar to attack!");
+            }
+            
+            if(battleTimer.isRunning() && heroX == 700 && heroY == 850) //Hydra battle sequece
+            {
+               System.out.println("Press the space bar to attack!");
+            }
+            
             if(wolfHealth <= 0)
             {
+               
                monster++;
-               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+               System.out.println("Good job you've defeated " + monster + "/3 monsters!");
+               System.out.println("The gods have blessed you with an attack boost!");
+               heroAttack = heroAttack + 25;
+               battleTimer.stop();
                repaint();
             }
           
             if(hydraHealth <= 0)
             {
+            
                battleTimer.stop();
                monster++;
-               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+               System.out.println("Good job you've defeated " + monster + "/3 monsters!");
+               System.out.println("The gods have blessed you with an attack boost!");
+               heroAttack = heroAttack + 25;
                repaint();
             }
           
             if(dragonHealth <= 0)
             {
+               dragon.setVisible(false);
                battleTimer.stop();
                monster++;
-               System.out.println("Good job you've defeated" + monster + "/3 monsters!");
+               System.out.println("Good job you've defeated " + monster + "/3 monsters!");
+               System.out.println("The gods have blessed you with an attack boost!");
+               heroAttack = heroAttack + 25;
                repaint();
             }
+            
             if(monster == 3)
             {
                System.out.println("Congratulations you have defeated all the monsters that have terrorized the lands for ages and now the world is safe! THE END!");
@@ -159,29 +179,43 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
          repaint2(hero);
       }
             
-      if (' ' == e.getKeyChar() && heroX == 200 && heroY == 850)
+      if (' ' == e.getKeyChar() && heroX == 200 && heroY == 850) //wolf battle mechanics
       {
          wolfHealth =  wolfHealth - (heroAttack * (int) (Math.random() * 6) + 1);
          System.out.println("Nice hit the wolf only has " + wolfHealth + " health left!");
       }
             
-      if (heroX == 200 && heroY == 850)
+      if (heroX == 200 && heroY == 850 && !battleTimer.isRunning())
       {
          System.out.println("An ElectroWolf has appeared and wants to fight!");
          battleTimer.start();
       }
             
-      if(heroX == 700 && heroY == 350)
+      if(heroX == 700 && heroY == 350 && !battleTimer.isRunning())
       {
          System.out.println("A dragon has appeared and wants to fight!");
          battleTimer.start();
       }
+      
+      if (' ' == e.getKeyChar() && heroX == 700 && heroY == 350) //dragon battle mechanics
+      {
+         dragonHealth =  dragonHealth - (heroAttack * (int) (Math.random() * 6) + 1);
+         System.out.println("Nice hit the wolf only has " + dragonHealth + " health left!");
+      }
+
             
       if(heroX == 700 && heroY == 850)
       {
          System.out.println("A seven headed hydra has appeared and wants to fight!");
          battleTimer.start();
       }
+      
+      if (' ' == e.getKeyChar() && heroX == 700 && heroY == 850) //hydra battle mechanics
+      {
+         hydraHealth =  hydraHealth - (heroAttack * (int) (Math.random() * 6) + 1);
+         System.out.println("Nice hit the wolf only has " + hydraHealth + " health left!");
+      }
+
       
       if(heroX > 1000 || heroX < 0 || heroY < 0 || heroY > 1000)
       {
