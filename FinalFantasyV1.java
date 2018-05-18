@@ -8,15 +8,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.JFrame;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import java.awt.image.*;
-import java.util.Properties;
-import javax.swing.JApplet;
-import java.io.*;
-import java.net.*;
-import javax.swing.JFileChooser;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 
 
@@ -36,6 +27,10 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    public int hydraAttack;
    public int wolfAttack;
    public int heroDefense;
+   private boolean paintHero = true;
+   private boolean paintHydra = true;
+   private boolean paintDragon = true;
+   private boolean paintElectroWolf = true;
    
    Image hero = Toolkit.getDefaultToolkit().createImage("Hero.jpg");
    Image forest = Toolkit.getDefaultToolkit().createImage("Forest.jpg");
@@ -55,12 +50,14 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       wolfHealth = 2000;
       heroHealth = 2000;
       heroDefense = 25;
+      monster = 0;
       
       addKeyListener(this);
       
       battleTimer = new Timer(1000, new ActionListener()
       {
       
+         
          public void actionPerformed(ActionEvent evt)
          {
             if(battleTimer.isRunning() && heroX == 200 && heroY == 850) //ElectroWolf battle sequence
@@ -80,7 +77,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
             
             if(wolfHealth <= 0)
             {
-               
+               paintElectroWolf = false;
                monster++;
                System.out.println("Good job you've defeated " + monster + "/3 monsters!");
                System.out.println("The gods have blessed you with an attack boost!");
@@ -91,7 +88,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
           
             if(hydraHealth <= 0)
             {
-            
+               paintHydra = false;
                battleTimer.stop();
                monster++;
                System.out.println("Good job you've defeated " + monster + "/3 monsters!");
@@ -102,7 +99,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
           
             if(dragonHealth <= 0)
             {
-               dragon.setVisible(false);
+               paintDragon = false;
                battleTimer.stop();
                monster++;
                System.out.println("Good job you've defeated " + monster + "/3 monsters!");
@@ -118,6 +115,7 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
             
             if(heroHealth <= 0)
             {
+               paintHero = false;
                System.out.println("Your hero has died and the world is now doomed but your valiant effort will not be forgotten!");
                System.out.println("GAME OVER TRY AGAIN!");
                System.exit(0);
@@ -129,19 +127,53 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
    
    public void paint(Graphics g)
    {
+   
       requestFocus();
       super.paint(g);
-          
-      g.drawImage(forest, 0, 0, 1000, 1000, this);
-      g.drawImage(hero, heroX, heroY, 50, 50, this);
-      g.drawImage(hydra, 750, 750, 150, 150, this);
-      g.drawImage(dragon, 750, 250, 150, 150, this);
-      g.drawImage(electroWolf, 250, 750, 150, 150, this);
       
+          
+      
+      g.drawImage(forest, 0, 0, 1000, 1000, this);
+      
+      if (paintHero == true)
+      {
+         g.drawImage(hero, heroX, heroY, 50, 50, this);
+      }
+      else if(paintHero == false)
+      {
+         g.drawImage(hero, 1000, 1000, 0, 0, this);
+      }
+      
+      if (paintHydra == true)
+      {
+         g.drawImage(hydra, 750, 750, 150, 150, this);
+      }
+      else if(paintHydra == false)
+      {
+         g.drawImage(hydra, 1000, 1000, 0, 0, this);
+      }
+      
+      if(paintDragon == true)
+      {
+         g.drawImage(dragon, 750, 250, 150, 150, this);
+      }
+      else if(paintDragon == false)
+      {
+         g.drawImage(dragon, 1000, 1000, 0, 0, this);
+      }
+      
+      if(paintElectroWolf == true)
+      {
+         g.drawImage(electroWolf, 250, 750, 150, 150, this);
+      }
+      else if(paintElectroWolf == false)
+      {
+         setVisible(electroWolf = false);
+      }
           
       g.setColor(Color.cyan);                              // update status
       g.drawString("Use WASD to move and only tap", 450, 950); 
-      g.drawString("Monsters killed: " + monster + "/3" , 450, 50); 
+       
    }
    
    public void repaint2(Image hero)
@@ -239,7 +271,6 @@ public class FinalFantasyV1 extends JFrame implements KeyListener
       prog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       prog.setSize(SCREEN_WIDTH, SCREEN_WIDTH);
       prog.setVisible(true);
-      prog.setFocusable(true);
       
       
    }// end of main method
